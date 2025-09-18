@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Test1 CI/CD Pipeline
 
 on:
   push:
@@ -11,8 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Run hello message
-      run: echo "Hello GitHub CI/CD!"
+    - name: Run tests
+      run: |
+        echo "Running tests..."
+        # Simulate a test (success)
+        if [ -f hello.txt ]; then
+          echo "Test Passed: hello.txt exists"
+        else
+          echo "Test Failed"
+          exit 1
+        fi
+
+    - name: Build project
+      run: |
+        echo "Building project..."
+        # Simulate build by creating build.txt
+        echo "Build successful!" > build.txt
+
+    - name: Deploy project
+      run: |
+        echo "Deploying project..."
+        echo "Deployment simulated: CI/CD working!"
